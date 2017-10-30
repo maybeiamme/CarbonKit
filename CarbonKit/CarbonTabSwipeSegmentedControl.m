@@ -216,9 +216,9 @@
 }
 
 - (BOOL)isRTL {
-    if (@available(iOS 9.0, *)) {
-        return [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft;
-    }
+#ifdef __IPHONE_9_0
+    return [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft;
+#endif
     return NO;
 }
 

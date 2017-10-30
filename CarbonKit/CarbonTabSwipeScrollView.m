@@ -40,9 +40,9 @@
         // Disable scroll indicators
         self.showsHorizontalScrollIndicator = self.showsVerticalScrollIndicator = NO;
 
-        if (@available(iOS 11.0, *)) {
-            [self setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
-        }
+#ifdef __IPHONE_11_0
+        [self setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+#endif
     }
     return self;
 }

@@ -595,20 +595,20 @@
                                                          metrics:nil
                                                            views:views]];
 
-    if (@available(iOS 11.0, *)) {
+#ifdef __IPHONE_11_0
         [NSLayoutConstraint activateConstraints:
          @[
            [_carbonTabSwipeScrollView.leadingAnchor constraintEqualToAnchor:_toolbar.safeAreaLayoutGuide.leadingAnchor],
            [_carbonTabSwipeScrollView.trailingAnchor constraintEqualToAnchor:_toolbar.safeAreaLayoutGuide.trailingAnchor],
            ]
          ];
-    } else {
+#else
         [self.toolbar addConstraints:[NSLayoutConstraint
                                       constraintsWithVisualFormat:@"H:|[_carbonTabSwipeScrollView]|"
                                       options:0
                                       metrics:nil
                                       views:views]];
-    }
+#endif
 }
 
 - (void)loadFirstViewController {
@@ -640,9 +640,9 @@
 }
 
 - (BOOL)isRTL {
-    if (@available(iOS 9.0, *)) {
-        return [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.view.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft;
-    }
+#ifdef __IPHONE_9_0
+    return [UIView userInterfaceLayoutDirectionForSemanticContentAttribute:self.view.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft;
+#endif
     return NO;
 }
 
